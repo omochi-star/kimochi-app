@@ -26,7 +26,7 @@ public class TaskController {
     public String showDetail(@PathVariable("id") long taskId, Model model) {
         var taskEntity = taskService.findById(taskId)
                 .orElseThrow(() -> new IllegalArgumentException("Task not found: iD =  " + taskId));
-        model.addAttribute("taskId", taskEntity.id());
+        model.addAttribute("task", TaskDTO.toDTO(taskEntity));
         return "tasks/detail";
     }
 }
