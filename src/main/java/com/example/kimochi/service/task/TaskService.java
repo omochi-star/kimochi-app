@@ -1,7 +1,10 @@
 package com.example.kimochi.service.task;
 
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
+@Service
 public class TaskService {
     public List<TaskEntity> find(){
         var task1 = new TaskEntity(1L, "SpringBootを学ぶ", "TODOアプリケーションを作ってみる", TaskStatus.TODO);

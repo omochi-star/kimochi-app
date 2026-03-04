@@ -1,13 +1,15 @@
 package com.example.kimochi.controller.task;
 
 import com.example.kimochi.service.task.TaskService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
+@RequiredArgsConstructor
 public class TaskController {
-    private final TaskService taskService = new TaskService();
+    private final TaskService taskService;
 
     @GetMapping("/tasks")
     public String list(Model model) {
