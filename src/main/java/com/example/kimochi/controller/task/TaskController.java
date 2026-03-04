@@ -23,8 +23,10 @@ public class TaskController {
     }
 
     @GetMapping("/tasks/{id}")
-    public String showDetail(@PathVariable("id") long taskId,Model model) {
-        model.addAttribute("taskId",taskId);
+    public String showDetail(@PathVariable("id") long taskId, Model model) {
+        var taskEntity = taskService.findById(taskId)
+                .orElseThrow(() -> new IllegalArgumentException("Task not found: iD =  " + taskId));
+        model.addAttribute("taskId", taskEntity.id());
         return "tasks/detail";
     }
 }
