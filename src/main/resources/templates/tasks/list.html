@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}"
+>
 <head>
-    <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<div class="container">
+<section layout:fragment="content">
     <h1>一覧</h1>
     <a th:href="@{/}" href="/">HOMEへ戻る</a>
-
     <table class="table">
         <thead>
         <tr>
@@ -25,6 +27,6 @@
         </tr>
         </tbody>
     </table>
-</div>
+</section>
 </body>
 </html>
