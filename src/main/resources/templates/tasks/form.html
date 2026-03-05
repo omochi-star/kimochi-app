@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}"
+>
+<head>
+    <title>タスク作成</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div>
+        <form th:action="@{/tasks}" method="post">
+            <div class="mb-3">
+                <label for="summaryInput" class="form-label">概要</label>
+                <input type="text" class="form-control" id="summaryInput" name="summary">
+            </div>
+            <div class="mb-3">
+                <label for="descriptionInput" class="form-label">詳細</label>
+                <textarea class="form-control" id="descriptionInput" name="description"></textarea>
+            </div>
+            <div class="mb-3 ">
+                <label class="form-label" for="statusInput">ステータス</label>
+                <select class="form-select" id="statusInput" name="status">
+                    <option value="TODO">Todo</option>
+                    <option value="DOING">Doing</option>
+                    <option value="DONE">Done</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</section>
+</body>
+</html>

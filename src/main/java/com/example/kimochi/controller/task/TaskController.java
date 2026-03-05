@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @RequiredArgsConstructor
@@ -28,5 +29,15 @@ public class TaskController {
                 .orElseThrow(() -> new IllegalArgumentException("Task not found: iD =  " + taskId));
         model.addAttribute("task", TaskDTO.toDTO(taskEntity));
         return "tasks/detail";
+    }
+
+    @GetMapping("/tasks/creationForm")
+    public String showCreationForm(){
+        return "tasks/form";
+    }
+
+    @PostMapping("/tasks")
+    public String create(TaskForm form, Model model){
+        return list(model);
     }
 }
