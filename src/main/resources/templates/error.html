@@ -10,8 +10,8 @@
 <body>
 <section layout:fragment="content">
     <div class="text-center">
-        <h1 class="display-1">404 Not Found</h1>
-        <p>お探しのページは見つかりません</p>
+        <h1 class="display-1" th:text="${status} + ' ' + ${error}"></h1>
+        <p>申し訳ございません、ページを表示できませんでした。</p>
         <a th:href="@{/}" class="btn btn-primary mt-3">トップページに戻る</a>
     </div>
 </section>
