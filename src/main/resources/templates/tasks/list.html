@@ -1,16 +1,14 @@
 <!DOCTYPE html>
-<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}"
+>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-          crossorigin="anonymous">
+    <title>タスク一覧</title>
 </head>
 <body>
-<div class="container">
-    <h1>一覧</h1>
-    <a th:href="@{/}" href="/">HOMEへ戻る</a>
-
+<section layout:fragment="content">
     <table class="table">
         <thead>
         <tr>
@@ -27,10 +25,6 @@
         </tr>
         </tbody>
     </table>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-jdSIJTK9l6XwXj3RixpVDXtMcA2bFd9O81RlLAwhpr2oXRqvQP88rr16IeFXTgFE"
-        crossorigin="anonymous"></script>
-
+</section>
 </body>
 </html>
