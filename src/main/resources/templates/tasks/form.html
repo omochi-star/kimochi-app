@@ -14,10 +14,12 @@
             <div class="mb-3">
                 <label for="summaryInput" class="form-label">概要</label>
                 <input type="text" class="form-control" id="summaryInput" th:field="*{summary}">
+                <div th:errors="*{summary}" ></div>
             </div>
             <div class="mb-3">
                 <label for="descriptionInput" class="form-label">詳細</label>
                 <textarea class="form-control" id="descriptionInput"  th:field="*{description}"></textarea>
+                <div th:errors="*{description}" ></div>
             </div>
             <div class="mb-3 ">
                 <label class="form-label" for="statusInput">ステータス</label>
@@ -26,6 +28,7 @@
                     <option value="DOING">Doing</option>
                     <option value="DONE">Done</option>
                 </select>
+                <div th:errors="*{status}" ></div>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
