@@ -10,24 +10,28 @@
 <body>
 <section layout:fragment="content">
     <div>
-        <form th:action="@{/tasks}" method="post">
-            <div class="mb-3">
+        <form th:action="@{/tasks}" method="post" th:object="${taskForm}">
+            <div class="mb-3 form-group">
                 <label for="summaryInput" class="form-label">概要</label>
-                <input type="text" class="form-control" id="summaryInput" name="summary">
+                <input type="text" class="form-control" id="summaryInput" th:field="*{summary}" th:errorclass="is-invalid">
+                <div th:errors="*{summary}" class="invalid-feedback"></div>
             </div>
-            <div class="mb-3">
+            <div class="mb-3 form-group">
                 <label for="descriptionInput" class="form-label">詳細</label>
-                <textarea class="form-control" id="descriptionInput" name="description"></textarea>
+                <textarea class="form-control" id="descriptionInput"  th:field="*{description}" rows="10" th:errorclass="is-invalid"></textarea>
+                <div th:errors="*{description}" class="invalid-feedback"></div>
             </div>
-            <div class="mb-3 ">
+            <div class="mb-3 form-group">
                 <label class="form-label" for="statusInput">ステータス</label>
-                <select class="form-select" id="statusInput" name="status">
+                <select class="form-select" id="statusInput"  th:field="*{status}" th:errorclass="is-invalid">
                     <option value="TODO">Todo</option>
                     <option value="DOING">Doing</option>
                     <option value="DONE">Done</option>
                 </select>
+                <div th:errors="*{status}" class="invalid-feedback"></div>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
+            <a th:href="@{/tasks}" class="btn btn-secondary">戻る</a>
         </form>
     </div>
 </section>
