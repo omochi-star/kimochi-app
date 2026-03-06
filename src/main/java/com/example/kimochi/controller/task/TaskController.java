@@ -7,13 +7,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequiredArgsConstructor
+@RequestMapping("/tasks")
 public class TaskController {
     private final TaskService taskService;
 
-    @GetMapping("/tasks")
+    @GetMapping
     public String list(Model model) {
         var taskList = taskService.find()
                 .stream()
@@ -23,7 +25,7 @@ public class TaskController {
         return "tasks/list";
     }
 
-    @GetMapping("/tasks/{id}")
+    @GetMapping("/{id}")
     public String showDetail(@PathVariable("id") long taskId, Model model) {
         var taskEntity = taskService.findById(taskId)
                 .orElseThrow(() -> new IllegalArgumentException("Task not found: iD =  " + taskId));
@@ -31,12 +33,12 @@ public class TaskController {
         return "tasks/detail";
     }
 
-    @GetMapping("/tasks/creationForm")
+    @GetMapping("/creationForm")
     public String showCreationForm() {
         return "tasks/form";
     }
 
-    @PostMapping("/tasks")
+    @PostMapping
     public String create(TaskForm form) {
         taskService.create(form.toEntity());
         return "redirect:/tasks";
