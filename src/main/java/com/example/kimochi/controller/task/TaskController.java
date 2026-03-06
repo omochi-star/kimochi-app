@@ -36,14 +36,18 @@ public class TaskController {
     }
 
     @GetMapping("/creationForm")
-    public String showCreationForm() {
+    public String showCreationForm(TaskForm form, Model model) {
+        if (form == null){
+            form = new TaskForm(null,null,null);
+        }
+        model.addAttribute("taskForm", form);
         return "tasks/form";
     }
 
     @PostMapping
-    public String create(@Validated TaskForm form, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()){
-            return "tasks/form";
+    public String create(@Validated TaskForm form, BindingResult bindingResult,Model model) {
+        if (bindingResult.hasErrors()) {
+            return showCreationForm(form,model);
         }
         taskService.create(form.toEntity());
         return "redirect:/tasks";
