@@ -1,8 +1,6 @@
 package com.example.kimochi.controller.task;
 
-import com.example.kimochi.service.task.TaskEntity;
 import com.example.kimochi.service.task.TaskService;
-import com.example.kimochi.service.task.TaskStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,14 +32,13 @@ public class TaskController {
     }
 
     @GetMapping("/tasks/creationForm")
-    public String showCreationForm(){
+    public String showCreationForm() {
         return "tasks/form";
     }
 
     @PostMapping("/tasks")
-    public String create(TaskForm form){
-        var newEntity = new TaskEntity(null,form.summary(),form.description(), TaskStatus.valueOf(form.status()));
-        taskService.create(newEntity);
+    public String create(TaskForm form) {
+        taskService.create(form.toEntity());
         return "redirect:/tasks";
     }
 }
