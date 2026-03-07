@@ -27,7 +27,7 @@ public class TaskController {
     @GetMapping("/{id}")
     public String showDetail(@PathVariable("id") long taskId, Model model) {
         var taskEntity = taskService.findById(taskId)
-                .orElseThrow(() -> new IllegalArgumentException("Task not found: iD =  " + taskId));
+                .orElseThrow(TaskNotFoundException::new);
         model.addAttribute("task", TaskDTO.toDTO(taskEntity));
         return "tasks/detail";
     }
@@ -49,7 +49,7 @@ public class TaskController {
     @GetMapping("/{id}/editForm")
     public String showEditForm(@PathVariable("id") long id, Model model) {
         var taskEntity = taskService.findById(id)
-                        .orElseThrow(()-> new IllegalArgumentException("Task not found"));
+                        .orElseThrow(TaskNotFoundException::new);
         var form = new TaskForm(taskEntity.summary(),taskEntity.description(),taskEntity.status().name());
         model.addAttribute("taskForm", form);
         return "tasks/form";
