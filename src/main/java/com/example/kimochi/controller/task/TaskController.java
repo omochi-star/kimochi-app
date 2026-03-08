@@ -65,12 +65,17 @@ public class TaskController {
             Model model
     ) {
         if (bindingResult.hasErrors()) {
-            model.addAttribute("mode","EDIT");
+            model.addAttribute("mode", "EDIT");
             return "tasks/form";
         }
         var entity = form.toEntity(id);
-                taskService.update(entity);
+        taskService.update(entity);
         return "redirect:/tasks/{id}";
+    }
+
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable("id") long id) {
+        return "redirect:/tasks";
     }
 
 
