@@ -20,7 +20,6 @@ public class TaskService {
     }
 
     public Optional<TaskEntity> findById(long taskId) {
-
         return taskRepository.selectById(taskId);
     }
 
