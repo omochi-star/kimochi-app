@@ -28,4 +28,8 @@ public class TaskService {
         taskRepository.insert(newEntity);
     }
 
+    @Transactional
+    public void update(TaskEntity entity) {
+        taskRepository.update(entity);
+    }
 }
