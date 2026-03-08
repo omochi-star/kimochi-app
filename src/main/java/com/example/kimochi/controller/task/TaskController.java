@@ -34,15 +34,15 @@ public class TaskController {
     }
 
     @GetMapping("/creationForm")
-    public String showCreationForm(@ModelAttribute TaskForm form,Model model) {
-        model.addAttribute("mode" ,"CREATE");
+    public String showCreationForm(@ModelAttribute TaskForm form, Model model) {
+        model.addAttribute("mode", "CREATE");
         return "tasks/form";
     }
 
     @PostMapping
-    public String create(@Validated TaskForm form, BindingResult bindingResult,Model model) {
+    public String create(@Validated TaskForm form, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            return showCreationForm(form,model);
+            return showCreationForm(form, model);
         }
         taskService.create(form.toEntity());
         return "redirect:/tasks";
@@ -56,4 +56,20 @@ public class TaskController {
         model.addAttribute("taskForm", form);
         return "tasks/form";
     }
+
+    @PutMapping("{id}")
+    public String update(
+            @PathVariable("id") long id,
+            @Validated @ModelAttribute TaskForm form,
+            BindingResult bindingResult,
+            Model model
+    ) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("mode","EDIT");
+            return "tasks/form";
+        }
+        return "redirect:/tasks/{id}";
+    }
+
+
 }
